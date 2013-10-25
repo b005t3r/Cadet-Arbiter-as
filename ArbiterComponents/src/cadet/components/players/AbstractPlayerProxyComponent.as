@@ -22,6 +22,15 @@ public class AbstractPlayerProxyComponent extends ComponentContainer implements 
         return children[0];
     }
 
+    public function get nonProxyPlayer():IPlayerComponent {
+        var proxy:IPlayerProxyComponent = this;
+
+        while(proxy is IPlayerProxyComponent)
+            proxy = proxy.player as IPlayerProxyComponent;
+
+        return proxy;
+    }
+
     public function get arbiter():IArbiterProcess { return player.arbiter; }
     public function set arbiter(value:IArbiterProcess):void { player.arbiter = value; }
 
@@ -29,7 +38,7 @@ public class AbstractPlayerProxyComponent extends ComponentContainer implements 
     public function set request(value:Request):void { player.request = value; }
 
     public function processRequest():* {
-        return null;
+        throw new Error("this method has to be implemented by a subclass");
     }
 
     override protected function childAdded(child:IComponent, index:uint):void {

@@ -32,6 +32,13 @@ public class StateContainer extends ComponentContainer {
         return children[children.length - 1];
     }
 
+    public function get previousState():StateComponent {
+        if(children.length <= 1)
+            return null;
+
+        return children[children.length - 2];
+    }
+
     public function get stateCount():int {
         return children.length;
     }

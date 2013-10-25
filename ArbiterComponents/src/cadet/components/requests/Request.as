@@ -19,5 +19,15 @@ public class Request {
     /** Player which is currently processing this request. */
     public function get player():IPlayerComponent { return _player; }
     public function set player(value:IPlayerComponent):void { _player = value; }
+
+    public function toJSON(k:String):* {
+        // arbiter and player are not serializable
+        if(k == "arbiter" || k == "player") {
+            return undefined;
+        }
+        else {
+            return this[k];
+        }
+    }
 }
 }

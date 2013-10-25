@@ -58,10 +58,22 @@ public interface IArbiterProcess extends IComponent {
      */
     function pauseExecutionResponse():*
 
-    /** Returns true if this arbiter is paused. */
-    function isExecutionPaused():Boolean
+    /** Returns true if this arbiter is no longer running. */
+    function isStopped():Boolean
 
-    /** Resumes execution of this arbiter, which will cause current player's processRequest() method to be called again. */
-    function resumeExecution():void;
+    /** Stops execution of this arbiter. Can only be called from an even handler. */
+    function stopExecution():void
+
+    /** Returns true if this arbiter is paused. */
+    function isPaused():Boolean
+
+    /** Pauses an asynchronous arbiter's execution. Can only be called from an even handler. */
+    function pauseExecution():void
+
+    /**
+     * Resumes execution of an asynchronous arbiter, which will cause current player's processRequest() method to be called again.
+     * Cannot be called from an even handler.
+     */
+    function resumeExecution():void
 }
 }
