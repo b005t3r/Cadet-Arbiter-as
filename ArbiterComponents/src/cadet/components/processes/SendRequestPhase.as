@@ -62,8 +62,10 @@ public class SendRequestPhase extends ExecutionPhase {
             didEventSent = true;
 
             arbiter.didSendRequestEvent.request = response as Request;
+            arbiter.didSendRequestEvent.player = request.player;
             arbiter.dispatchEvent(arbiter.didSendRequestEvent);
             arbiter.didSendRequestEvent.request = null;
+            arbiter.didSendRequestEvent.player = null;
         }
 
         if(arbiter.isStopped())
