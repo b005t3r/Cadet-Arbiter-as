@@ -14,25 +14,25 @@ public class StateContainer extends ComponentContainer {
         super(name);
     }
 
-    public function pushState(state:StateComponent):void {
+    public function pushState(state:IStateComponent):void {
         children.addItem(state);
     }
 
-    public function popState():StateComponent {
-        var state:StateComponent = children[children.length - 1];
+    public function popState():IStateComponent {
+        var state:IStateComponent = children[children.length - 1];
         children.removeItemAt(children.length - 1);
 
         return state;
     }
 
-    public function get currentState():StateComponent {
+    public function get currentState():IStateComponent {
         if(children.length == 0)
             return null;
 
         return children[children.length - 1];
     }
 
-    public function get previousState():StateComponent {
+    public function get previousState():IStateComponent {
         if(children.length <= 1)
             return null;
 
@@ -44,7 +44,7 @@ public class StateContainer extends ComponentContainer {
     }
 
     override protected function childAdded(child:IComponent, index:uint):void {
-        if(child is StateComponent == false)
+        if(child is IStateComponent == false)
             throw new TypeError("StateContainer can only hold StateComponents");
 
         super.childAdded(child, index);

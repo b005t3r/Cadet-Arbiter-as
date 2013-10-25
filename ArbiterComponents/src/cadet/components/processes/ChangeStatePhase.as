@@ -5,11 +5,11 @@
  */
 
 package cadet.components.processes {
-import cadet.components.states.StateComponent;
+import cadet.components.states.IStateComponent;
 
 public class ChangeStatePhase extends ExecutionPhase {
-    internal var oldState:StateComponent = null;
-    internal var newState:StateComponent = null;
+    internal var oldState:IStateComponent = null;
+    internal var newState:IStateComponent = null;
 
     private var eventSent:Boolean = false;
 

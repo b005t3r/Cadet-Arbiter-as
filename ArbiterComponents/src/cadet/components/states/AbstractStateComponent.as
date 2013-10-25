@@ -17,30 +17,28 @@ import cadet.core.Component;
  * should call IArbiterProcess' executePreviousStateResult() to roll back to GameState and let it do its part, before
  * a new turn starts.
  */
-public class StateComponent extends Component {
+public class AbstractStateComponent extends Component implements IStateComponent {
     private var _arbiter:IArbiterProcess    = null;
     private var _request:Request            = null;
 
-    public function StateComponent(name:String = "State") {
+    public function AbstractStateComponent(name:String = "State") {
         super(name);
     }
 
-    /** State handles its logic part in this method. */
     public function execute():* {
         throw new Error("this method has to be implemented by a subclass");
     }
 
-    /** State handles response to a previously send request in this method. */
     public function executeWithResponse():* {
         throw new Error("this method has to be implemented by a subclass");
     }
 
-    /** Arbiter which is currently executing this state. Available in execute() and executeWithResponse() methods, null otherwise. */
     public function get arbiter():IArbiterProcess { return _arbiter; }
+
     public function set arbiter(value:IArbiterProcess):void { _arbiter = value; }
 
-    /** Request to which player has responded. Available in executeWithResponse() method, null otherwise. */
     public function get request():Request { return _request; }
+
     public function set request(value:Request):void { _request = value; }
 }
 }

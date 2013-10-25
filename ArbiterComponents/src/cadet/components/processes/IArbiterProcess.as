@@ -8,7 +8,7 @@ package cadet.components.processes {
 import cadet.components.players.IPlayerComponent;
 import cadet.components.players.PlayerContainer;
 import cadet.components.requests.Request;
-import cadet.components.states.StateComponent;
+import cadet.components.states.IStateComponent;
 import cadet.components.states.StateContainer;
 import cadet.core.IComponent;
 
@@ -41,7 +41,7 @@ public interface IArbiterProcess extends IComponent {
     function executePreviousStateResult():*
 
     /** States call this method while finishing their execution to push a new state onto the stack and start its execution. */
-    function executeStateResult(state:StateComponent):*
+    function executeStateResult(state:IStateComponent):*
 
     /** States call this method while finishing their execution to send a request to the given player. */
     function sendRequestResult(request:Request, player:IPlayerComponent):*

@@ -6,10 +6,10 @@
 
 package cadet.components.processes {
 import cadet.components.requests.Request;
-import cadet.components.states.StateComponent;
+import cadet.components.states.IStateComponent;
 
 public class ExecuteStatePhase extends ExecutionPhase {
-    internal var state:StateComponent = null;
+    internal var state:IStateComponent = null;
 
     override internal function run(arbiter:BasicArbiterProcess):ExecutionPhase {
         var response:* = executeState();
@@ -50,9 +50,9 @@ public class ExecuteStatePhase extends ExecutionPhase {
 
             return arbiter.changeStatePhase;
         }
-        else if(response is StateComponent) {
+        else if(response is IStateComponent) {
             arbiter.changeStatePhase.oldState = state;
-            arbiter.changeStatePhase.newState = response as StateComponent;
+            arbiter.changeStatePhase.newState = response as IStateComponent;
 
             return arbiter.changeStatePhase;
         }

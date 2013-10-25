@@ -12,7 +12,7 @@ import cadet.components.events.StateEvent;
 import cadet.components.players.IPlayerComponent;
 import cadet.components.players.PlayerContainer;
 import cadet.components.requests.Request;
-import cadet.components.states.StateComponent;
+import cadet.components.states.IStateComponent;
 import cadet.components.states.StateContainer;
 import cadet.core.Component;
 
@@ -66,7 +66,7 @@ public class BasicArbiterProcess extends Component implements IArbiterProcess {
 
     public function executeCurrentStateResult():* { return EXECUTE_CURRENT_STATE_RESULT; }
     public function executePreviousStateResult():* { return EXECUTE_PREVIOUS_STATE_RESULT; }
-    public function executeStateResult(state:StateComponent):* { return state; }
+    public function executeStateResult(state:IStateComponent):* { return state; }
 
     public function sendRequestResult(request:Request, player:IPlayerComponent):* {
         request.player = player;
