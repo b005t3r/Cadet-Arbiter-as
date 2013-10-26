@@ -31,11 +31,15 @@ public class AbstractPlayerProxyComponent extends ComponentContainer implements 
         return proxy;
     }
 
-    public function get arbiter():IArbiterProcess { return player.arbiter; }
-    public function set arbiter(value:IArbiterProcess):void { player.arbiter = value; }
+    [Inspectable(priority="0")]
+    override public function set name(value:String):void { if(player != null) player.name = value; }
+    override public function get name():String { return player != null ? player.name : null; }
 
-    public function get request():Request { return player.request; }
-    public function set request(value:Request):void { player.request = value; }
+    public function get arbiter():IArbiterProcess { return player != null ? player.arbiter : null; }
+    public function set arbiter(value:IArbiterProcess):void { if(player != null) player.arbiter = value; }
+
+    public function get request():Request { return player!= null ? player.request : null; }
+    public function set request(value:Request):void { if(player != null) player.request = value; }
 
     public function processRequest():* {
         throw new Error("this method has to be implemented by a subclass");
