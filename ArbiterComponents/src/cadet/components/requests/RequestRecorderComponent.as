@@ -6,18 +6,23 @@
 
 package cadet.components.requests {
 import cadet.components.events.RequestEvent;
+import cadet.components.events.RequestRecorderEvent;
 import cadet.components.processes.IArbiterProcess;
 import cadet.core.Component;
 
 import com.adobe.serialization.json.JSON;
 
 public class RequestRecorderComponent extends Component {
+    protected var _requestRecordedEvent:RequestRecorderEvent;
+
     protected var _arbiter:IArbiterProcess  = null;
     protected var _requests:Object          = {};
     protected var _requestIndex:int         = 0;
 
-    public function RequestRecorderComponent(name:String = "Component") {
+    public function RequestRecorderComponent(name:String = "Request Recorder") {
         super(name);
+
+        _requestRecordedEvent = new RequestRecorderEvent(RequestRecorderEvent.REQUEST_RECORDED, this);
     }
 
     public function get arbiter():IArbiterProcess { return _arbiter; }
@@ -51,6 +56,8 @@ public class RequestRecorderComponent extends Component {
         playerRequests.push(wrapper);
 
         _requestIndex++;
+
+        dispatchEvent(_requestRecordedEvent);
     }
 }
 }
