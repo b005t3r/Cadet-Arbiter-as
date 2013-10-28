@@ -4,7 +4,7 @@
  * Time: 9:55
  */
 
-package cadet.components.errors {
+package cadet.errors {
 
 public class ArbiterIllegalPauseError extends Error {
     public function ArbiterIllegalPauseError(message:* = "arbiter can only be paused from an even handler", id:* = 0) {

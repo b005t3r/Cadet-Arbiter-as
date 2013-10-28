@@ -4,7 +4,7 @@
  * Time: 9:30
  */
 
-package cadet.components.errors {
+package cadet.errors {
 
 /** Thrown when trying to pause a synchronous IArbiterProcess instance. */
 public class SynchronousArbiterError extends Error {

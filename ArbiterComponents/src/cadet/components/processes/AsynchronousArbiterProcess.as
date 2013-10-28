@@ -5,9 +5,9 @@
  */
 
 package cadet.components.processes {
-import cadet.components.errors.ArbiterIllegalPauseError;
-import cadet.components.errors.ArbiterIllegalResumeError;
 import cadet.core.ISteppableComponent;
+import cadet.errors.ArbiterIllegalPauseError;
+import cadet.errors.ArbiterIllegalResumeError;
 
 public class AsynchronousArbiterProcess extends BasicArbiterProcess implements ISteppableComponent {
     protected var _paused:Boolean = false;

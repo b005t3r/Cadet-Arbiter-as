@@ -4,7 +4,7 @@
  * Time: 12:26
  */
 
-package cadet.components.events {
+package cadet.events {
 import cadet.components.processes.IArbiterProcess;
 import cadet.components.states.IStateComponent;
 

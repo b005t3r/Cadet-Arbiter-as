@@ -4,7 +4,7 @@
  * Time: 15:34
  */
 
-package cadet.components.events {
+package cadet.events {
 import cadet.components.players.IPlayerComponent;
 import cadet.components.processes.IArbiterProcess;
 import cadet.components.requests.Request;

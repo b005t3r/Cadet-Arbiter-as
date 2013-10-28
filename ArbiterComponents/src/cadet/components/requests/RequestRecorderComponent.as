@@ -5,10 +5,10 @@
  */
 
 package cadet.components.requests {
-import cadet.components.events.RequestEvent;
-import cadet.components.events.RequestRecorderEvent;
 import cadet.components.processes.IArbiterProcess;
 import cadet.core.Component;
+import cadet.events.RequestEvent;
+import cadet.events.RequestRecorderEvent;
 
 import com.adobe.serialization.json.JSON;
 

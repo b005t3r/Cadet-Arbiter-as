@@ -5,16 +5,16 @@
  */
 
 package cadet.components.processes {
-import cadet.components.errors.ArbiterIllegalStopError;
-import cadet.components.errors.SynchronousArbiterError;
-import cadet.components.events.RequestEvent;
-import cadet.components.events.StateEvent;
 import cadet.components.players.IPlayerComponent;
 import cadet.components.players.PlayerContainer;
 import cadet.components.requests.Request;
 import cadet.components.states.IStateComponent;
 import cadet.components.states.StateContainer;
 import cadet.core.Component;
+import cadet.errors.ArbiterIllegalStopError;
+import cadet.errors.SynchronousArbiterError;
+import cadet.events.RequestEvent;
+import cadet.events.StateEvent;
 
 import flash.events.Event;
 

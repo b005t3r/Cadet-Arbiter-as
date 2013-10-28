@@ -3,7 +3,7 @@
  * Date: 26/10/13
  * Time: 11:59
  */
-package cadet.components.events {
+package cadet.events {
 
 import cadet.components.requests.RequestRecorderComponent;
 
