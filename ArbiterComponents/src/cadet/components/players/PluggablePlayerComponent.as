@@ -23,7 +23,32 @@ public class PluggablePlayerComponent extends AbstractPlayerComponent {
     }
 
     override public function processRequest():* {
+        for each (var plugin:IPlayerPluginComponent in children) {
+            if(! plugin.canHandleRequest(request))
+                continue;
 
+            // deactivate previously used plugin and activate the new one, if different from the previous one
+            if(activePlugin == null) {
+                activePlugin = plugin;
+                activePlugin.activate();
+            }
+            else if(activePlugin != plugin) {
+                activePlugin.deactivate();
+                activePlugin = plugin;
+                activePlugin.activate();
+            }
+
+            var response:* = activePlugin.processRequest();
+
+            // don't deactivate current plugin, if just pausing
+            if(response == arbiter.pauseExecutionResponse())
+                return response;
+
+            activePlugin.deactivate();
+            activePlugin = null;
+
+            return response;
+        }
     }
 
     override protected function childAdded(child:IComponent, index:uint):void {
