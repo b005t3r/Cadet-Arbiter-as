@@ -19,7 +19,7 @@
         </dependencies>
         <compiler-options>
           <map>
-            <entry key="compiler.keep-as3-metadata" value="Transient" />
+            <entry key="compiler.keep-as3-metadata" value="Transient&#10;Inspectable&#10;Serializable" />
           </map>
         </compiler-options>
         <packaging-air-desktop />
