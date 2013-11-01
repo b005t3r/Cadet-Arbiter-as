@@ -13,8 +13,8 @@ import cadet.components.states.StateContainer;
 import cadet.core.Component;
 import cadet.errors.ArbiterIllegalStopError;
 import cadet.errors.SynchronousArbiterError;
-import cadet.events.RequestEvent;
-import cadet.events.StateEvent;
+import cadet.events.arbiter.PlayerEvent;
+import cadet.events.arbiter.StateEvent;
 
 import flash.events.Event;
 
@@ -32,8 +32,10 @@ public class BasicArbiterProcess extends Component implements IArbiterProcess {
     internal var _running:Boolean                                               = false;
 
     internal var willSwitchStateEvent:StateEvent                                = null;
-    internal var willSendRequestEvent:RequestEvent                              = null;
-    internal var didSendRequestEvent:RequestEvent                               = null;
+    internal var didExecuteStateEvent:StateEvent                                = null;
+    internal var didExecuteStateWithResponseEvent:StateEvent                    = null;
+    internal var willSendRequestEvent:PlayerEvent                              = null;
+    internal var didSendRequestEvent:PlayerEvent                               = null;
 
     internal var executeStatePhase:ExecuteStatePhase                            = new ExecuteStatePhase();
     internal var executeStateWithResponsePhase:ExecuteStateWithResponsePhase    = new ExecuteStateWithResponsePhase();
@@ -45,9 +47,11 @@ public class BasicArbiterProcess extends Component implements IArbiterProcess {
     public function BasicArbiterProcess(name:String = "Basic Arbiter") {
         super(name);
 
-        willSwitchStateEvent =   new StateEvent(StateEvent.WILL_SWITCH_STATE, this);
-        willSendRequestEvent    = new RequestEvent(RequestEvent.WILL_PROCESS_REQUEST, this);
-        didSendRequestEvent     = new RequestEvent(RequestEvent.DID_PROCESS_REQUEST, this);
+        willSwitchStateEvent                = new StateEvent(StateEvent.WILL_SWITCH_STATE, this);
+        didExecuteStateEvent                = new StateEvent(StateEvent.DID_EXECUTE_STATE, this);
+        didExecuteStateWithResponseEvent    = new StateEvent(StateEvent.DID_EXECUTE_STATE_WITH_RESPONSE, this);
+        willSendRequestEvent                = new PlayerEvent(PlayerEvent.WILL_PROCESS_REQUEST, this);
+        didSendRequestEvent                 = new PlayerEvent(PlayerEvent.DID_PROCESS_REQUEST, this);
     }
 
     public function set players(value:PlayerContainer):void { _players = value; }
@@ -74,7 +78,7 @@ public class BasicArbiterProcess extends Component implements IArbiterProcess {
         return request;
     }
 
-    public function requestResponse(request:Request):* { return request; }
+    public function requestProcessedResponse(request:Request):* { return request; }
 
     public function stopExecutionResponse():* { return STOP_EXECUTION_RESPONSE; }
     public function pauseExecutionResponse():* { return PAUSE_EXECUTION_RESPONSE; }
@@ -91,6 +95,7 @@ public class BasicArbiterProcess extends Component implements IArbiterProcess {
     public function pauseExecution():void { throw new SynchronousArbiterError(); }
     public function resumeExecution():void { throw new SynchronousArbiterError(); }
 
+    [cppcall]
     override public function dispatchEvent(event:Event):Boolean {
         _dispatchingEvents = true;
 

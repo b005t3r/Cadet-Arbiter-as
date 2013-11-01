@@ -17,12 +17,12 @@ public class ChangeStatePhase extends ExecutionPhase {
         if(! eventSent) {
             eventSent = true;
 
-            arbiter.willSwitchStateEvent.oldState = oldState;
+            arbiter.willSwitchStateEvent.currentState = oldState;
             arbiter.willSwitchStateEvent.newState = newState;
 
             arbiter.dispatchEvent(arbiter.willSwitchStateEvent);
 
-            arbiter.willSwitchStateEvent.oldState = null;
+            arbiter.willSwitchStateEvent.currentState = null;
             arbiter.willSwitchStateEvent.newState = null;
         }
 
@@ -32,8 +32,6 @@ public class ChangeStatePhase extends ExecutionPhase {
         if(arbiter.isPaused())
             return this;
 
-        arbiter.executeStatePhase.state = newState;
-
         if(oldState == arbiter.states.currentState && newState == arbiter.states.previousState) {
             arbiter.states.popState();
         }
@@ -41,7 +39,15 @@ public class ChangeStatePhase extends ExecutionPhase {
             arbiter.states.pushState(newState);
         }
 
-        return arbiter.executeStatePhase;
+        if(newState != null) {
+            arbiter.executeStatePhase.state = newState;
+
+            return arbiter.executeStatePhase;
+        }
+        else {
+            // this arbiter has finished its execution
+            return null;
+        }
     }
 
     override internal function deactivate():void {

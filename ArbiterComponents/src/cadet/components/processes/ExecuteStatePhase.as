@@ -9,20 +9,30 @@ import cadet.components.requests.Request;
 import cadet.components.states.IStateComponent;
 
 public class ExecuteStatePhase extends ExecutionPhase {
-    internal var state:IStateComponent = null;
+    internal var state:IStateComponent  = null;
+    private var result:*                = null;
 
     override internal function run(arbiter:BasicArbiterProcess):ExecutionPhase {
-        var response:* = executeState();
+        if(result == null)
+            result = executeState(arbiter);
 
-        return processResponse(response, arbiter);
+        return processResponse(result, arbiter);
     }
 
     override internal function deactivate():void {
-        state = null;
+        state = result = null;
     }
 
-    protected function executeState():* {
+    protected function executeState(arbiter:BasicArbiterProcess):* {
+        state.arbiter = arbiter;
+
         var response:* = state.execute();
+
+        arbiter.didExecuteStateEvent.currentState = state;
+        arbiter.dispatchEvent(arbiter.didExecuteStateEvent);
+        arbiter.didExecuteStateEvent.currentState = null;
+
+        state.arbiter = null;
 
         return response;
     }

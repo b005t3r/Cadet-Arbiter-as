@@ -21,5 +21,7 @@ public class RequestRecorderEvent extends Event {
     }
 
     public function get recorder():RequestRecorderComponent { return _recorder; }
+
+    override public function clone():Event { return new RequestRecorderEvent(type, recorder); }
 }
 }

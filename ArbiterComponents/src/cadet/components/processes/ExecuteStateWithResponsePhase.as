@@ -16,16 +16,20 @@ public class ExecuteStateWithResponsePhase extends ExecuteStatePhase {
         super.deactivate();
     }
 
-    override protected function executeState():* {
+    override protected function executeState(arbiter:BasicArbiterProcess):* {
+        state.arbiter = arbiter;
         state.request = response;
 
-        return state.executeWithResponse();
-    }
+        var result:* = state.executeWithResponse();
 
-    override protected function processResponse(response:*, arbiter:BasicArbiterProcess):ExecutionPhase {
+        arbiter.didExecuteStateWithResponseEvent.currentState = state;
+        arbiter.dispatchEvent(arbiter.didExecuteStateWithResponseEvent);
+        arbiter.didExecuteStateWithResponseEvent.currentState = null;
+
+        state.arbiter = null;
         state.request = null;
 
-        return super.processResponse(response, arbiter);
+        return result;
     }
 }
 }

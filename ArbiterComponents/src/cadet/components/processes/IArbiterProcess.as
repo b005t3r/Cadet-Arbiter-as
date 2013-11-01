@@ -47,7 +47,7 @@ public interface IArbiterProcess extends IComponent {
     function sendRequestResult(request:Request, player:IPlayerComponent):*
 
     /** Players call this method while finishing processing request to signalize it's been processed. */
-    function requestResponse(request:Request):*
+    function requestProcessedResponse(request:Request):*
 
     /** Players call this method while finishing processing request to stop arbiter's execution. */
     function stopExecutionResponse():*

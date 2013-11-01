@@ -34,11 +34,11 @@ public class AbstractStateComponent extends Component implements IStateComponent
     }
 
     public function get arbiter():IArbiterProcess { return _arbiter; }
-
     public function set arbiter(value:IArbiterProcess):void { _arbiter = value; }
 
     public function get request():Request { return _request; }
-
     public function set request(value:Request):void { _request = value; }
+
+    // TODO: add GameRulesComponent and GameModelComponent
 }
 }
