@@ -1,0 +1,73 @@
+<cadet:CadetScene x:id="0" timeScale="1" framerate="60" name="Component" xmlns:cadet="www.unwrong.com/cadet/1.0.0" xmlns:x="core.app.core.serialization.Serializer" xmlns:core="www.unwrong.com/core/1.0.0" xmlns:cadet2D="www.unwrong.com/cadet2D/1.0.0" xmlns:ns0="cadet.components.processes" xmlns:ns1="cadet.components.tweens">
+  <Object x:name="userData" x:id="1" showGrid="1" snapEnabled="1" zoom="1.3" q_wjge="412.7692307692308" gridSize="30" t_kglm="601.2307692307694"/>
+  <core:ArrayCollection x:name="children" x:id="2">
+    <cadet2D:Renderer2D x:name="0" x:id="3" depthSort="0" allowScale="0" name="2D Renderer"/>
+    <ns0:JugglerProcess x:name="1" x:id="4" timeScale="1" name="Juggler Process">
+      <core:ArrayCollection x:name="children" x:id="5">
+        <ns1:TweenComponent x:name="0" x:id="6" repeatReversed="1" roundToInt="0" reversed="0" name="Tween" repeatCount="4" transitionName="Ease In-Out" animatedProperties="[{&quot;to&quot;:0.5,&quot;name&quot;:&quot;scaleX&quot;},{&quot;to&quot;:0.5,&quot;name&quot;:&quot;scaleY&quot;},{&quot;to&quot;:800,&quot;name&quot;:&quot;x&quot;}]" delay="0" duration="2" repeatDelay="0">
+          <cadet2D:Transform2D x:name="target" x:id="7" name="Rectangle_1_Transform2D" matrix="1,0,0,1,60,80"/>
+          <core:ArrayCollection x:name="children" x:id="8"/>
+        </ns1:TweenComponent>
+        <ns1:TimelineComponent x:name="1" x:id="9" repeatReversed="1" roundToInt="0" reversed="0" name="Inner timeline" repeatCount="4" transitionName="Linear" paused="0" delay="0" duration="2" repeatDelay="0.5">
+          <core:ArrayCollection x:name="children" x:id="10">
+            <ns1:TimeFrameComponent x:name="0" x:id="11" startTime="0" duration="0.5" name="Time Frame">
+              <core:ArrayCollection x:name="children" x:id="12">
+                <ns1:TweenComponent x:name="0" x:id="13" repeatReversed="0" roundToInt="0" reversed="0" name="Tween" repeatCount="1" transitionName="Ease In-Out" animatedProperties="[{&quot;to&quot;:400,&quot;name&quot;:&quot;x&quot;}]" delay="0" duration="0.5" repeatDelay="0">
+                  <cadet2D:Transform2D x:name="target" x:id="14" name="Rectangle_0_Transform2D" matrix="1,0,0,1,0,0">
+                    <x:Ref x:name="parentTransform" x:id="7"/>
+                  </cadet2D:Transform2D>
+                  <core:ArrayCollection x:name="children" x:id="15"/>
+                </ns1:TweenComponent>
+              </core:ArrayCollection>
+            </ns1:TimeFrameComponent>
+            <ns1:TimeFrameComponent x:name="1" x:id="16" startTime="0.5" duration="0.5" name="Time Frame">
+              <core:ArrayCollection x:name="children" x:id="17">
+                <ns1:TweenComponent x:name="0" x:id="18" repeatReversed="0" roundToInt="0" reversed="0" name="Tween" repeatCount="1" transitionName="Ease In-Out-Back" animatedProperties="[{&quot;to&quot;:300,&quot;name&quot;:&quot;y&quot;}]" delay="0" duration="0.5" repeatDelay="0">
+                  <x:Ref x:name="target" x:id="14"/>
+                  <core:ArrayCollection x:name="children" x:id="19"/>
+                </ns1:TweenComponent>
+              </core:ArrayCollection>
+            </ns1:TimeFrameComponent>
+            <ns1:TimeFrameComponent x:name="2" x:id="20" startTime="1" duration="0.5" name="Time Frame">
+              <core:ArrayCollection x:name="children" x:id="21">
+                <ns1:TweenComponent x:name="0" x:id="22" repeatReversed="0" roundToInt="0" reversed="0" name="Tween" repeatCount="1" transitionName="Ease In-Out-Bounce" animatedProperties="[{&quot;from&quot;:400,&quot;name&quot;:&quot;x&quot;}]" delay="0" duration="0.5" repeatDelay="0">
+                  <x:Ref x:name="target" x:id="14"/>
+                  <core:ArrayCollection x:name="children" x:id="23"/>
+                </ns1:TweenComponent>
+              </core:ArrayCollection>
+            </ns1:TimeFrameComponent>
+            <ns1:TimeFrameComponent x:name="3" x:id="24" startTime="1.5" duration="0.5" name="Time Frame">
+              <core:ArrayCollection x:name="children" x:id="25">
+                <ns1:TweenComponent x:name="0" x:id="26" repeatReversed="0" roundToInt="0" reversed="0" name="Tween" repeatCount="1" transitionName="Ease In-Out-Elastic" animatedProperties="[{&quot;from&quot;:300,&quot;name&quot;:&quot;y&quot;}]" delay="0" duration="0.5" repeatDelay="0">
+                  <x:Ref x:name="target" x:id="14"/>
+                  <core:ArrayCollection x:name="children" x:id="27"/>
+                </ns1:TweenComponent>
+              </core:ArrayCollection>
+            </ns1:TimeFrameComponent>
+          </core:ArrayCollection>
+        </ns1:TimelineComponent>
+      </core:ArrayCollection>
+    </ns0:JugglerProcess>
+    <cadet:ComponentContainer x:name="2" x:id="28" name="Rectangle_1">
+      <core:ArrayCollection x:name="children" x:id="29">
+        <cadet:ComponentContainer x:name="0" x:id="30" name="Rectangle_0">
+          <core:ArrayCollection x:name="children" x:id="31">
+            <x:Ref x:name="0" x:id="14"/>
+            <cadet2D:RectangleGeometry x:name="1" x:id="32" vertices="0,0:100,0:100,100:0,100" height="100" width="100" name="Rectangle_0_RectangleGeometry"/>
+            <cadet2D:GeometrySkin x:name="2" x:id="33" touchable="1" lineColor="16777215" lineAlpha="0.7" fillAlpha="0.04" fillColor="16777215" drawVertices="0" width="0" height="0" lineThickness="3" visible="1" name="Rectangle_0_GeometrySkin">
+              <x:Ref x:name="transform2D" x:id="14"/>
+            </cadet2D:GeometrySkin>
+          </core:ArrayCollection>
+        </cadet:ComponentContainer>
+        <x:Ref x:name="1" x:id="7"/>
+        <cadet2D:RectangleGeometry x:name="2" x:id="34" vertices="0,0:500,0:500,400:0,400" height="400" width="500" name="Rectangle_1_RectangleGeometry"/>
+        <cadet2D:GeometrySkin x:name="3" x:id="35" touchable="1" lineColor="16777215" lineAlpha="0.7" fillAlpha="0.46" fillColor="4510534" drawVertices="0" width="0" height="0" lineThickness="1" visible="1" name="Rectangle_1_GeometrySkin">
+          <x:Ref x:name="transform2D" x:id="7"/>
+        </cadet2D:GeometrySkin>
+      </core:ArrayCollection>
+    </cadet:ComponentContainer>
+  </core:ArrayCollection>
+  <core:DependencyManager x:name="dependencyManager" x:id="36">
+    <core:ArrayCollection x:name="dependencyNodes" x:id="37"/>
+  </core:DependencyManager>
+</cadet:CadetScene>
