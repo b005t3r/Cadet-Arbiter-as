@@ -22,8 +22,11 @@ public class GameStateComponent extends AbstractStateComponent {
         // 1. check for victory
         var victorSymbol:int = getVictor();
 
-        if(victorSymbol != GameModelComponent.EMPTY)
-            return arbiter.executePreviousStateResult();
+        if(victorSymbol != GameModelComponent.EMPTY || gameModel.boardFull) {
+            gameModel.victorSymbol = victorSymbol;
+
+            return arbiter.executeStateResult(new GameFinishedStateComponent());
+        }
 
         // 2. set current player
         _gameModel.currentSymbol = _gameModel.nextSymbol();

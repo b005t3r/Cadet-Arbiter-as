@@ -15,13 +15,16 @@ import core.app.managers.ResourceManager;
 import flash.display.Sprite;
 
 import tictactoe.components.display.BoardDisplayComponent;
-import tictactoe.components.display.RefreshDisplaysProcess;
+import tictactoe.components.display.InfoDisplayComponent;
+import tictactoe.components.display.RefreshBoardDisplayProcess;
+import tictactoe.components.display.RefreshInfoDisplayProcess;
+import tictactoe.components.logic.GameRestarterProcess;
 import tictactoe.components.logic.players.human.MoveRequestPlugin;
 import tictactoe.components.logic.states.GameStateComponent;
 
 import tictactoe.components.model.GameModelComponent;
 
-[SWF(width="310", height="310", backgroundColor="0x002135", frameRate="60")]
+[SWF(width="310", height="345", backgroundColor="0x002135", frameRate="60")]
 public class TicTacToeDesktop extends Sprite {
     public function TicTacToeDesktop() {
         var launcher:Cadet2DLauncher = new Cadet2DLauncher();
@@ -32,19 +35,28 @@ public class TicTacToeDesktop extends Sprite {
             boardDisplay.createChildren();
             scene.children.addItem(boardDisplay);
 
-            var refresher:RefreshDisplaysProcess = new RefreshDisplaysProcess();
+            var infoDisplay:InfoDisplayComponent = new InfoDisplayComponent();
+            infoDisplay.createChildren();
+            scene.children.addItem(infoDisplay);
+
+            var infoRefresher:RefreshInfoDisplayProcess = new RefreshInfoDisplayProcess();
+            scene.children.addItem(infoRefresher);
+
+            var boardRefresher:RefreshBoardDisplayProcess = new RefreshBoardDisplayProcess();
             var oTexture:TextureComponent = new TextureComponent();
             var xTexture:TextureComponent = new TextureComponent();
 
             resourceManager.bindResource("o.png", oTexture, "bitmapData");
             resourceManager.bindResource("x.png", xTexture, "bitmapData");
 
-            refresher.oTexture = oTexture;
-            refresher.xTexture = xTexture;
+            boardRefresher.oTexture = oTexture;
+            boardRefresher.xTexture = xTexture;
 
             scene.children.addItem(oTexture);
             scene.children.addItem(xTexture);
-            scene.children.addItem(refresher);
+            scene.children.addItem(boardRefresher);
+
+            scene.children.addItem(new GameRestarterProcess());
 
             var arbiter:AsynchronousArbiterProcess  = new AsynchronousArbiterProcess();
             var states:StateContainer               = new StateContainer();

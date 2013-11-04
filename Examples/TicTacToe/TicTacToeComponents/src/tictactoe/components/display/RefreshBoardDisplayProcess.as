@@ -9,26 +9,23 @@ import cadet.components.processes.AsynchronousArbiterProcess;
 import cadet.components.processes.IArbiterProcess;
 import cadet.core.Component;
 import cadet.core.IComponent;
-import cadet.events.arbiter.PlayerEvent;
 import cadet.events.arbiter.StateEvent;
 import cadet.util.ComponentUtil;
 
 import cadet2D.components.textures.TextureComponent;
 
 import tictactoe.components.logic.requests.MoveRequest;
-
 import tictactoe.components.logic.states.TurnStateComponent;
-
 import tictactoe.components.model.GameModelComponent;
 
-public class RefreshDisplaysProcess extends Component {
+public class RefreshBoardDisplayProcess extends Component {
     private var _arbiter:IArbiterProcess            = null;
     private var _gameModel:GameModelComponent       = null;
     private var _boardDisplay:BoardDisplayComponent = null;
     private var _oTexture:TextureComponent          = null;
     private var _xTexture:TextureComponent          = null;
 
-    public function RefreshDisplaysProcess(name:String = "Refresh Displays Process") {
+    public function RefreshBoardDisplayProcess(name:String = "Refresh Board Diplay Process") {
         super(name);
     }
 

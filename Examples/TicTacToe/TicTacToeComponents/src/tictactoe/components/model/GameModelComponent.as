@@ -18,7 +18,8 @@ public class GameModelComponent extends Component {
         new <int>[0, 0, 0]
     ];
 
-    private var _currentSymbol:int = EMPTY;
+    private var _currentSymbol:int  = EMPTY;
+    private var _victorSymbol:int   = EMPTY;
 
     public function GameModelComponent(name:String = "Game Model") {
         super(name);
@@ -26,6 +27,8 @@ public class GameModelComponent extends Component {
 
     public function get currentSymbol():int { return _currentSymbol; }
     public function set currentSymbol(value:int):void { _currentSymbol = value; }
+    public function get victorSymbol():int { return _victorSymbol; }
+    public function set victorSymbol(value:int):void { _victorSymbol = value; }
     public function nextSymbol():int { return currentSymbol == O ? X : O; }
 
     public function putSymbol(symbol:int, x:int, y:int):void {
@@ -34,6 +37,23 @@ public class GameModelComponent extends Component {
 
     public function getSymbol(x:int, y:int):int {
         return board[y][x];
+    }
+
+    public function get boardFull():Boolean {
+        var colSize:int = board.length;
+        for(var y:int = 0; y < colSize; y++) {
+            var row:Vector.<int> = board[y];
+
+            var rowSize:int = row.length;
+            for(var x:int = 0; x < rowSize; x++) {
+                var field:int = row[x];
+
+                if(field == EMPTY)
+                    return false;
+            }
+        }
+
+        return true;
     }
 }
 }

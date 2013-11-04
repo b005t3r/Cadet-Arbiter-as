@@ -13,7 +13,7 @@ import tictactoe.components.display.BoardDisplayComponent;
 
 import tictactoe.components.display.BoxDisplayComponent;
 
-import tictactoe.components.display.RefreshDisplaysProcess;
+import tictactoe.components.display.RefreshBoardDisplayProcess;
 import tictactoe.components.logic.players.human.MoveRequestPlugin;
 import tictactoe.components.logic.states.GameStateComponent;
 import tictactoe.components.logic.states.TurnStateComponent;
@@ -24,7 +24,7 @@ public class CadetEditor_TicTacToe_Ext extends Sprite {
         var resourceManager:ResourceManager = CoreApp.resourceManager;
 
         // Processes
-        resourceManager.addResource(new ComponentFactory(RefreshDisplaysProcess, "Refresh Display", "Tic Tac Toe", CadetEngineIcons.Process, CadetScene));
+        resourceManager.addResource(new ComponentFactory(RefreshBoardDisplayProcess, "Refresh Display", "Tic Tac Toe", CadetEngineIcons.Process, CadetScene));
 
         // Displays
         resourceManager.addResource(new ComponentFactory(BoxDisplayComponent, "Box Display", "Tic Tac Toe", CadetEngineIcons.Component));
