@@ -34,6 +34,9 @@ public interface IArbiterProcess extends IComponent {
      */
     function beginExecution():void
 
+    /** States call this method while finishing their execution to stop arbiter's execution. */
+    function stopExecutionResult():*
+
     /** States call this method while finishing their execution to be executed again. */
     function executeCurrentStateResult():*
 

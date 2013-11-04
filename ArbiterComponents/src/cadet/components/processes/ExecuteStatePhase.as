@@ -16,7 +16,7 @@ public class ExecuteStatePhase extends ExecutionPhase {
         if(result == null)
             result = executeState(arbiter);
 
-        return processResponse(result, arbiter);
+        return processResult(result, arbiter);
     }
 
     override internal function deactivate():void {
@@ -37,16 +37,11 @@ public class ExecuteStatePhase extends ExecutionPhase {
         return response;
     }
 
-    protected function processResponse(response:*, arbiter:BasicArbiterProcess):ExecutionPhase {
-        if(response == arbiter.stopExecutionResponse()) {
+    protected function processResult(response:*, arbiter:BasicArbiterProcess):ExecutionPhase {
+        if(response == arbiter.stopExecutionResult()) {
             arbiter.internalStop();
 
             return null;
-        }
-        else if(response == arbiter.pauseExecutionResponse()) {
-            arbiter.internalPause();
-
-            return this;
         }
         else if(response == arbiter.executeCurrentStateResult()) {
             arbiter.changeStatePhase.oldState = state;

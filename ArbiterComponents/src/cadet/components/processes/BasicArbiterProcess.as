@@ -19,6 +19,7 @@ import cadet.events.arbiter.StateEvent;
 import flash.events.Event;
 
 public class BasicArbiterProcess extends Component implements IArbiterProcess {
+    protected static var STOP_EXECUTION_RESULT:String                           = "stopExecutionResult";
     protected static var EXECUTE_CURRENT_STATE_RESULT:String                    = "executeCurrentState";
     protected static var EXECUTE_PREVIOUS_STATE_RESULT:String                   = "executePreviousState";
     protected static var STOP_EXECUTION_RESPONSE:String                         = "stopExecutionResponse";
@@ -68,6 +69,7 @@ public class BasicArbiterProcess extends Component implements IArbiterProcess {
         runExecutionLoop(executeStatePhase);
     }
 
+    public function stopExecutionResult():* { return STOP_EXECUTION_RESULT; }
     public function executeCurrentStateResult():* { return EXECUTE_CURRENT_STATE_RESULT; }
     public function executePreviousStateResult():* { return EXECUTE_PREVIOUS_STATE_RESULT; }
     public function executeStateResult(state:IStateComponent):* { return state; }
